@@ -36,10 +36,14 @@
 		    top: 6px;
 		    right: 5px;
 		}
-		.layui-form-item .layui-inline{margin-right: 0 !important;}
-		.layui-form-label {width: 68px !important;padding: 8px;}
-		.layui-btn+.layui-btn {margin-left: 6px !important;}
-		.layui-table-cell {padding :0 8px !important;}
+		.layui-form-item .layui-inline{
+			margin-right: 0 !important;
+		}
+		.layui-form-label {
+		    width: 68px !important;
+		    padding: 8px;
+		}
+
 		.layuimini-form > .layui-form-item > .layui-input-block {
 		    margin-left: 150px !important;
 		}
@@ -129,11 +133,6 @@
 		        </script>
 
 		        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-				
-				
-				<script type="text/html" id="currentTableStatus">
-		            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-		        </script>
 
 		        <script type="text/html" id="currentTableBar">
 		            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
@@ -172,17 +171,17 @@
 		                // {field: 'classify', width: 80, title: '职业'},
 		                // {field: 'wealth', width: 135, title: '财富', sort: true},
 		                // {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
-		                {type: "checkbox",width: 40, fixed: "left"},
-		                {field: 'id',width: 80, title: 'ID', sort: true},
-		                {field: 'username',width: 90, title: '姓名'},
-		                {field: 'sex', title: '电话'},
-		                {field: 'city',  title: '微信'},
-		                {field: 'sign', title: 'QQ'},
-		                {field: 'experience', title: '邮箱'},
-		                {field: 'score',title: '地址'},
-		                {field: 'classify', title: '类型'},
-		                {field: 'wealth',width: 60, title: '状态', templet: '#currentTableStatus',align: "center" ,sort: true},
-		                {title: '操作',width: 100, templet: '#currentTableBar', fixed: "right", align: "center"}
+		                {type: "checkbox",width: 50, fixed: "left"},
+		                {field: 'id',width: 75, title: 'ID', sort: true},
+		                {field: 'username', title: '用户名'},
+		                {field: 'sex', title: '性别', sort: true},
+		                {field: 'city',  title: '城市'},
+		                {field: 'sign', title: '签名',},
+		                {field: 'experience', title: '积分', sort: true},
+		                {field: 'score',title: '评分', sort: true},
+		                {field: 'classify',  title: '职业'},
+		                {field: 'wealth',  title: '财富', sort: true},
+		                {title: '操作', templet: '#currentTableBar', fixed: "right", align: "center"}
 		            ]],
 		            limits: [10, 15, 20, 25, 50, 100],
 		            limit: 15,

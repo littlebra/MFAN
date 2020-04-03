@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
 
-	<style>.laytable-cell-1-0-0{ width: 48px; }.laytable-cell-1-0-1{ width: 80px; }.laytable-cell-1-0-2{ width: 80px; }.laytable-cell-1-0-3{ width: 80px; }.laytable-cell-1-0-4{ width: 80px; }.laytable-cell-1-0-5{ width: 160px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
+	<style>.layui-form-item {width :82% !important;margin-bottom: 0 !important; }.layui-form-item .layui-inline{margin-right: 0 !important;margin-bottom: 0 !important;}.layui-form-label {width: 52px !important;padding:8px !important;}.layui-form-item .layui-input-inline {width :120px !important;}.layui-btn+.layui-btn {margin-left: 6px !important;}.layui-table-cell {padding :0 8px!important;}.laytable-cell-1-0-0{ width: 48px; }.laytable-cell-1-0-1{ width: 80px; }.laytable-cell-1-0-2{ width: 80px; }.laytable-cell-1-0-3{ width: 80px; }.laytable-cell-1-0-4{ width: 80px; }.laytable-cell-1-0-5{ width: 160px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
 	<body>
 		<div class="wrap-container clearfix">
 				<div class="column-content-detail">
@@ -20,25 +20,42 @@
 					  <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
 					  <button class="layui-btn" data-type="isAll">验证是否全选</button>
 					</div>
+					<script type="text/html" id="toolbarDemo">
+			            <div style="">
+			                <form class="layui-form layui-form-pane" action="">
+			                    <div class="layui-form-item">
+			                        <div class="layui-inline">
+			                            <label class="layui-form-label">姓名</label>
+			                            <div class="layui-input-inline">
+			                                <input type="text" name="username" autocomplete="off" class="layui-input">
+			                            </div>
+			                        </div>
+			                        <div class="layui-inline">
+			                            <label class="layui-form-label">电话</label>
+			                            <div class="layui-input-inline">
+			                                <input type="text" name="sex" autocomplete="off" class="layui-input">
+			                            </div>
+			                        </div>
+			                        <div class="layui-inline">
+			                            <label class="layui-form-label">微信</label>
+			                            <div class="layui-input-inline">
+			                                <input type="text" name="city" autocomplete="off" class="layui-input">
+			                            </div>
+			                        </div>
+			                        <div class="layui-inline">
+			                            <label class="layui-form-label">内容</label>
+			                            <div class="layui-input-inline">
+			                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+			                            </div>
+			                        </div>
+			                        <div class="layui-inline">
+			                            <button type="submit" class="layui-btn layui-btn-sm" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+			                        </div>
+			                    </div>
+			                </form>
+			            </div>
+			        </script>
 					 <table id="demo" lay-filter="test"></table>
-					<table class="layui-table" lay-data="{width: 892, height:330, url:'http://www.123.cn/index.php/index/demo_data/tablaDemo', page:true, id:'idTest'}" lay-filter="demo">
-					  <thead>
-					    <tr>
-					      <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-					      <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-					      <th lay-data="{field:'username', width:80}">用户名</th>
-					      <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-					      <th lay-data="{field:'city', width:80}">城市</th>
-					      <th lay-data="{field:'sign', width:160}">签名</th>
-					      <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
-					      
-					      <th lay-data="{field:'classify', width:80}">职业</th>
-					      <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-					      <th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>
-					      <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-					    </tr>
-					  </thead>
-					</table>
 					 
 					<script type="text/html" id="barDemo">
 					  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
@@ -97,20 +114,40 @@
 			    //第一个实例
 			  table.render({
 			    elem: '#demo'
-			    ,height: 312
-			    ,url: 'http://www.123.cn/api/v1/articles/all' //数据接口
+			    ,height: 520
+			    ,url: '../api/message.json' //数据接口
 			    ,page: true //开启分页
-			    ,cols: [[ //表头
-			      {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-			      ,{field: 'cover', title: '封面图', width:100}
-			      ,{field: 'title', title: '姓名', width:80}
-			      ,{field: 'description', title: '描述(简介)', width:180, sort: true}
-			      ,{field: 'article_cate_id', title: '所属分类', width: 77}
-			      ,{field: 'tips', title: '标签', width: 80, sort: true}
-			      ,{field: 'visited', title: '阅读量', width: 60, sort: true}
-			      ,{field: 'addtime', title: '添加时间', width: 80}
-			      ,{field: 'status', title: '状态', width: 135, sort: true}
+	            ,toolbar: '#toolbarDemo'
+	            ,defaultToolbar: ['filter', 'exports', 'print', {
+	                title: '提示',
+	                layEvent: 'LAYTABLE_TIPS',
+	                icon: 'layui-icon-tips'
+	            }]
+			    // ,cols: [[ //表头
+			    //   {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+			    //   // ,{field: 'cover', title: '封面图', width:100}
+			    //   ,{field: 'title', title: '姓名', width:80,fixed: 'left'}
+			    //   ,{field: 'description', title: '描述(简介)', width:180, sort: true}
+			    //   ,{field: 'article_cate_id', title: '所属分类', width: 77}
+			    //   ,{field: 'tips', title: '标签', width: 80, sort: true}
+			    //   ,{field: 'visited', title: '阅读量', width: 60, sort: true}
+			    //   ,{field: 'addtime', title: '添加时间', width: 80}
+			    //   ,{field: 'status', title: '状态', width: 135, sort: true}
+			    // ]]
+			    ,cols: [[ //标题栏
+			      {type: "checkbox",width: 40, fixed: "left"}
+			      ,{field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+			      ,{field: 'username', title: '姓名', width: 100,sort: true,fixed: 'left'}
+			      ,{field: 'sex', title: '性别',width:70, sort: true,}
+			      ,{field: 'tel', title: '电话',sort: true,}
+			      ,{field: 'wx', title: '微信', sort: true}
+			      ,{field: 'address', title: '地址',sort: true,}
+			      ,{field: 'msg', title: '内容', minWidth: 180}
+			      ,{field: 'addtime', title: '留言时间', minWidth: 180,sort: true,}
+			      ,{field: 'status', title: '状态', width:100, sort: true,fixed: 'right'}
 			    ]]
+			    ,limits: [10, 15, 20, 25, 50, 100]
+	            ,limit: 10
 			  });
 			});
 			</script>

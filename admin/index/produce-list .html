@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
-	<style>.layui-table-cell{height: 60px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;}.laytable-cell-1-0-0{ width: 48px;line-height:60px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;}.laytable-cell-1-0-4{ width: 80px;line-height:60px;}.laytable-cell-1-0-5{ width: 160px;line-height:60px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px;line-height:60px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px;line-height:60px; }.laytable-cell-1-0-10{ width: 178px; }</style>
+	<style>.layui-table-cell{height: 100px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;text-align: center;}.laytable-cell-1-0-0{ width: 48px;line-height:80px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;padding: 0 5px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;}.laytable-cell-1-0-4{ width: 80px;line-height:80px;}.laytable-cell-1-0-5{ width: 160px;line-height:80px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px;line-height:80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px;line-height:80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
 	<body>
 		<div class="wrap-container clearfix">
 				<div class="column-content-detail">
@@ -22,6 +22,15 @@
 					<table id="demo" lay-filter="test"></table>
 					<script type="text/html" id="imgtmp">
 						 <img src="{{d.cover}}" alt="" />
+					</script>
+					<script type="text/html" id="originalPrice">
+					  ¥{{d.original_price}}
+					</script>
+					<script type="text/html" id="currentPrice">
+					  ¥{{d.current_price}}
+					</script>
+					<script type="text/html" id="changeStatus">
+					  <a class="layui-btn layui-btn-sm" lay-event="edit">编辑{{d.status}}</a>
 					</script>
 					<script type="text/html" id="barDemo">
 					  <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
@@ -80,7 +89,7 @@
 			  table.render({
 			    elem: '#demo'
 			    // ,height: 520 //开启则页面固定,数据滚动|关闭则页面滚动,数据固定
-			    ,url: '../api/article-list.json' //数据接口
+			    ,url: '../api/product-list.json' //数据接口
 			    // ,page: true //开启分页
 			    ,toolbar: '#toolbarDemo'
 	            ,defaultToolbar: ['filter', 'exports', 'print', {
@@ -90,13 +99,15 @@
 	            }]
 			    ,cols: [[ //表头
 			       {type: "checkbox",width: 40, fixed: "left"}
-			      ,{field: 'id', title: 'ID', width:70, sort: true, fixed: 'left'}
-			      ,{field: 'title', title: '标题', width:200}
-			      ,{field: 'description', title: '描述(简介)', width:180, sort: true}
-			      ,{field: 'cover', title: '封面图', width:130, templet: "#imgtmp"} 
+			      // ,{field: 'id', title: 'ID', width:70, sort: true, fixed: 'left'}
+			      ,{field: 'cover', title: '商品图片', width:110, templet: "#imgtmp"} 
+			      ,{field: 'title', title: '商品名称', width:190}
 			      ,{field: 'article_cate_id', title: '所属分类', width: 100}
-			      ,{field: 'tips', title: '标签', width: 100, sort: true}
-			      ,{field: 'visited', title: '阅读量', width: 90, sort: true, align: "center"}
+			      ,{field: 'original_price', title: '原价', width:90,templet: '#originalPrice', sort: true}
+			      ,{field: 'current_price', title: '现价', width: 90,templet: '#currentPrice', sort: true}
+			      ,{field: 'stock', title: '库存', width: 90, sort: true}
+			      ,{field: 'sales', title: '销量', width: 90, sort: true, align: "center"}
+			      ,{field: 'status', title: '状态', width: 100,templet: '#changeStatus', sort: true}
 			      ,{field: 'addtime', title: '添加时间', width: 120,sort: true,}
 			      ,{field: 'status', title: '操作', width: 140,templet: '#barDemo', sort: true,fixed: 'right', align: "center"}
 			    ]]

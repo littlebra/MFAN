@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
-	<style>.layui-table-cell{height: 100px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;text-align: center;}.laytable-cell-1-0-0{ width: 48px;line-height:80px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;padding: 0 5px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;}.laytable-cell-1-0-4{ width: 80px;line-height:80px;}.laytable-cell-1-0-5{ width: 160px;line-height:80px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px;line-height:80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px;line-height:80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
+	<style>.layui-table-cell{height: 80px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-cell img{max-width: 80px;}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;text-align: center;}.laytable-cell-1-0-0{ width: 48px;line-height:80px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;padding: 0 5px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;line-height:80px;}.laytable-cell-1-0-4{ width: 80px;line-height:80px;}.laytable-cell-1-0-5{ width: 160px;line-height:80px; }.laytable-cell-1-0-6{ width: 80px;line-height:80px; }.laytable-cell-1-0-7{ width: 80px;line-height:80px; }.laytable-cell-1-0-8{ width: 135px;line-height:80px; }.laytable-cell-1-0-9{ width: 80px;line-height:80px; }.laytable-cell-1-0-10{ width: 178px;line-height:80px; }</style>
 	<body>
 		<div class="wrap-container clearfix">
 				<div class="column-content-detail">
@@ -23,7 +23,7 @@
 					<script type="text/html" id="imgtmp">
 						 <img src="{{d.cover}}" alt="" />
 					</script>
-					<script type="text/html" id="originalPrice">
+					<script type="text/html" id="originalPrice" style="text-decoration: line-through;">
 					  ¥{{d.original_price}}
 					</script>
 					<script type="text/html" id="currentPrice">
@@ -100,14 +100,14 @@
 			    ,cols: [[ //表头
 			       {type: "checkbox",width: 40, fixed: "left"}
 			      // ,{field: 'id', title: 'ID', width:70, sort: true, fixed: 'left'}
-			      ,{field: 'cover', title: '商品图片', width:110, templet: "#imgtmp"} 
-			      ,{field: 'title', title: '商品名称', width:190}
-			      ,{field: 'article_cate_id', title: '所属分类', width: 100}
-			      ,{field: 'original_price', title: '原价', width:90,templet: '#originalPrice', sort: true}
-			      ,{field: 'current_price', title: '现价', width: 90,templet: '#currentPrice', sort: true}
-			      ,{field: 'stock', title: '库存', width: 90, sort: true}
+			      ,{field: 'cover', title: '商品图片', width:90, templet: "#imgtmp", align: "center"} 
+			      ,{field: 'title', title: '商品名称', width:190, align: "center"}
+			      ,{field: 'article_cate_id', title: '所属分类', width: 100, align: "center"}
+			      ,{field: 'original_price', title: '原价', width:90,templet: '#originalPrice', sort: true, align: "center"}
+			      ,{field: 'current_price', title: '现价', width: 90,templet: '#currentPrice', sort: true, align: "center"}
+			      ,{field: 'stock', title: '库存', width: 90, sort: true, align: "center"}
 			      ,{field: 'sales', title: '销量', width: 90, sort: true, align: "center"}
-			      ,{field: 'status', title: '状态', width: 100,templet: '#changeStatus', sort: true}
+			      ,{field: 'status', title: '状态', width: 100,templet: '#changeStatus', sort: true, align: "center"}
 			      ,{field: 'addtime', title: '添加时间', width: 120,sort: true,}
 			      ,{field: 'status', title: '操作', width: 140,templet: '#barDemo', sort: true,fixed: 'right', align: "center"}
 			    ]]

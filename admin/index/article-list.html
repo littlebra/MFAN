@@ -10,18 +10,28 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
-	<style>.layui-table-cell{height: 60px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;}.laytable-cell-1-0-0{ width: 48px;line-height:60px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;}.laytable-cell-1-0-4{ width: 80px;line-height:60px;}.laytable-cell-1-0-5{ width: 160px;line-height:60px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px;line-height:60px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px;line-height:60px; }.laytable-cell-1-0-10{ width: 178px; }</style>
+	<style>.layui-form-pane .layui-form-label{height: 30px!important;line-height: 15px!important;color: #666;}.layui-table-view .layui-table-tool .layui-input{height: 30px!important;}.layui-table-cell{height: 60px;white-space:normal;/*overflow: hidden;text-overflow: ellipsis;*/display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;/*text-overflow:inherit;white-space:normal;word-break: break-all;line-clamp: 2;*/}.layui-table-header .layui-table th>.layui-table-cell{height: 30px;line-height:30px;}.laytable-cell-1-0-0{ width: 48px;line-height:60px; }.laytable-cell-1-0-1{ width: 80px;line-height:60px;}.laytable-cell-1-0-2{ width: 80px;}.laytable-cell-1-0-3{ width: 80px;}.laytable-cell-1-0-4{ width: 80px;line-height:60px;}.laytable-cell-1-0-5{ width: 160px;line-height:60px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px;line-height:60px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px;line-height:60px; }.laytable-cell-1-0-10{ width: 178px; }</style>
 	<body>
 		<div class="wrap-container clearfix">
 				<div class="column-content-detail">
-					<div class="layui-btn-group demoTable">
-					  <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-					  <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-					  <button class="layui-btn" data-type="isAll">验证是否全选</button>
-					</div>
-					<table id="demo" lay-filter="test"></table>
+
+					<table id="articleTable" lay-filter="articleData"></table>
 					<script type="text/html" id="imgtmp">
 						 <img src="{{d.cover}}" alt="" />
+					</script>
+<!-- 					<script type="text/html" id=toolbarDemo>
+						<div class="layui-btn-group demoTable">
+						  <button class="layui-btn layui-btn-sm" data-type="getCheckData">获取选中行数据</button>
+						  <button class="layui-btn layui-btn-sm" data-type="getCheckLength">获取选中数目</button>
+						  <button class="layui-btn layui-btn-sm" data-type="isAll">验证是否全选</button>
+						</div>
+					</script> -->
+					<script type="text/html" id="toolbarDemo">
+					  <div class="layui-btn-container">
+					    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+					    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+					    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+					  </div>
 					</script>
 					<script type="text/html" id="barDemo">
 					  <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
@@ -36,11 +46,11 @@
 			layui.use('table', function(){
 			  var table = layui.table;
 			  //监听表格复选框选择
-			  table.on('checkbox(demo)', function(obj){
+			  table.on('checkbox(articleData)', function(obj){
 			    console.log(obj)
 			  });
 			  //监听工具条
-			  	table.on('tool(test)', function(obj){
+			  	table.on('tool(articleData)', function(obj){
 				    var data = obj.data;
 				    if(obj.event === 'detail'){
 				      layer.msg('ID：'+ data.id + ' 的查看操作');
@@ -59,7 +69,7 @@
 		                    maxmin:true,
 		                    shadeClose: true,
 		                    area: ['100%', '100%'],
-		                    content: "article-detail.html",
+		                    content: "article-detail.html?aid=1",
 		                });
 		                $(window).on("resize", function () {
 		                    layer.full(index);
@@ -68,31 +78,31 @@
 				    }
 				});
 			  
-			  var $ = layui.$, active = {
-			    getCheckData: function(){ //获取选中数据
-			      var checkStatus = table.checkStatus('idTest')
-			      ,data = checkStatus.data;
-			      layer.alert(JSON.stringify(data));
-			    }
-			    ,getCheckLength: function(){ //获取选中数目
-			      var checkStatus = table.checkStatus('idTest')
-			      ,data = checkStatus.data;
-			      layer.msg('选中了：'+ data.length + ' 个');
-			    }
-			    ,isAll: function(){ //验证是否全选
-			      var checkStatus = table.checkStatus('idTest');
-			      layer.msg(checkStatus.isAll ? '全选': '未全选')
-			    }
-			  };
+			  // var $ = layui.$, active = {
+			  //   getCheckData: function(){ //获取选中数据
+			  //     var checkStatus = table.checkStatus('articleTable')
+			  //     ,data = checkStatus.data;
+			  //     layer.alert(JSON.stringify(data));
+			  //   }
+			  //   ,getCheckLength: function(){ //获取选中数目
+			  //     var checkStatus = table.checkStatus('articleTable')
+			  //     ,data = checkStatus.data;
+			  //     layer.msg('选中了：'+ data.length + ' 个');
+			  //   }
+			  //   ,isAll: function(){ //验证是否全选
+			  //     var checkStatus = table.checkStatus('articleTable');
+			  //     layer.msg(checkStatus.isAll ? '全选': '未全选')
+			  //   }
+			  // };
 			  
-			  $('.demoTable .layui-btn').on('click', function(){
-			    var type = $(this).data('type');
-			    active[type] ? active[type].call(this) : '';
-			  });
+			  // $('.demoTable .layui-btn').on('click', function(){
+			  //   var type = $(this).data('type');
+			  //   active[type] ? active[type].call(this) : '';
+			  // });
 
 			    //第一个实例
 			  table.render({
-			    elem: '#demo'
+			    elem: '#articleTable'
 			    // ,height: 520 //开启则页面固定,数据滚动|关闭则页面滚动,数据固定
 			    ,url: '../api/article-list.json' //数据接口
 			    // ,page: true //开启分页
@@ -118,6 +128,29 @@
 			    ,limits: [10, 15, 20, 25, 50, 100]
 		        ,limit: 10
 
+			  });
+
+			  //头工具栏事件
+			  table.on('toolbar(articleData)', function(obj){
+			    var checkStatus = table.checkStatus(obj.config.id);
+			    switch(obj.event){
+			      case 'getCheckData':
+			        var data = checkStatus.data;
+			        layer.alert(JSON.stringify(data));
+			      break;
+			      case 'getCheckLength':
+			        var data = checkStatus.data;
+			        layer.msg('选中了：'+ data.length + ' 个');
+			      break;
+			      case 'isAll':
+			        layer.msg(checkStatus.isAll ? '全选': '未全选');
+			      break;
+			      
+			      //自定义头工具栏右侧图标 - 提示
+			      case 'LAYTABLE_TIPS':
+			        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+			      break;
+			    };
 			  });
 			});
 			</script>

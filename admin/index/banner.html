@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
 	<style>
-		body{margin: 15px !important;background: #f2f2f2 !important;}.layuimini-container {border: 1px solid #f2f2f2;border-radius: 5px !important;background-color: #ffffff !important;}
+		body{margin: 15px !important;background: #f2f2f2 !important;}.layuimini-container {border: 1px solid #f2f2f2;border-radius: 5px !important;background-color: #ffffff !important;}.layui-table-cell{height: 80px;line-height: 80px;white-space:normal;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;}.layui-table-header .layui-table th>.layui-table-cell {height: 30px;line-height: 30px;text-align: center;}
 	</style>
 	<body>
 		<div class="wrap-container clearfix">
@@ -22,34 +22,91 @@
 				</fieldset>
 				 
 				<div class="layui-upload">
-				  <button type="button" class="layui-btn" id="test2">多图片上传</button> 
+				  <button type="button" class="layui-btn" id="uploadImg">多图片上传</button> 
 				  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-				    预览图：
+
+					<table id="demo" lay-filter="test"></table>
+					<script type="text/html" id="imgtmp">
+						 <img src="{{d.img}}" alt="" />
+					</script>
+					<script type="text/html" id="bannerStatusBar">
+						 <input type="checkbox" name="bannerStatus" lay-skin="switch" lay-text="显示|隐藏" value="{{d.status}}">
+					</script>
+					<script type="text/html" id="currentTableBar">
+			            <a class="layui-btn layui-btn-sm data-count-edit layui-btn-warm" lay-event="edit">编辑</a>
+			            <a class="layui-btn layui-btn-sm layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+			        </script>
 				    <div class="layui-upload-list" id="demo2"></div>
 				 </blockquote>
 				</div>
 			</div>
 		</div>
-
+		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script>
-		layui.use('upload', function(){
+		layui.use(['jquery','upload','table'], function(){
 		  var $ = layui.jquery
-		  ,upload = layui.upload;
+		  ,upload = layui.upload
+		  ,table = layui.table;
 		  //多图片上传
 		  upload.render({
-		    elem: '#test2'
-		    ,url: 'http://www.kaos.cn/MFAN/admin/index/' //改成您自己的上传接口
+		    elem: '#uploadImg'
+		    ,url: "{:url('admin/banner/uploadImg')}" //改成您自己的上传接口
+	        // ,accept:'file'  // 允许上传的文件类型
+	        ,auto:true // 自动上传
+		    // ,method: 'post'
 		    ,multiple: true
-		    ,before: function(obj){
-		      //预读本地文件示例，不支持ie8
-		      obj.preview(function(index, file, result){
-		        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-		      });
-		    }
+		    // ,before: function(obj){
+		    // 	console.log(obj);
+		    //   //预读本地文件示例，不支持ie8
+		    //   // obj.preview(function(index, file, result){
+		    //   //   $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+		    //   // });
+		    // }
 		    ,done: function(res){
 		      //上传完毕
+		      console.log(res);
+		      
 		    }
 		  });
+			//执行渲染
+			table.render({
+			  elem: '#demo' //指定原始表格元素选择器（推荐id选择器）
+			  // ,url: res.data
+			  ,height: 315 //容器高度
+			  ,cols: [[
+			  	// {type: "checkbox",width: 40, fixed: "left"},
+                {field: 'id',width: 80, title: 'ID', sort: true,align: "center"},
+                {field: 'sort',width: 90, title: '排序', sort: true,align: "center"},
+                {field: 'img',width: 130, title: '图片', templet:'#imgtmp',align: "center" },
+                {field: 'url', width: 150,title: '链接',align: "center"},
+                {field: 'addtime',width: 120, title: '添加时间',align: "center"},
+                {field: 'status',width: 120, title: '状态',align: "center",templet: '#bannerStatusBar'},
+                {width: 180, title: '操作', templet: '#currentTableBar',align: "center" ,sort: true},
+			  ]] //设置表头
+			  ,data: [{
+			  	"id":"0001",
+			  	"sort":"0",
+			  	"img":"http://www.company.cn/uploads/20200416/1884c3f29d8becc53851b6e47d537d08.jpg",
+			  	"url":"/demo",
+			  	"addtime":"2020-04-15",
+			  	"status":"1"
+			  },{
+			  	"id":"0001",
+			  	"sort":"0",
+			  	"img":"http://www.company.cn/uploads/20200416/1884c3f29d8becc53851b6e47d537d08.jpg",
+			  	"url":"/demo",
+			  	"addtime":"2020-04-15",
+			  	"status":"1"
+			  },{
+			  	"id":"0001",
+			  	"sort":"0",
+			  	"img":"http://www.company.cn/uploads/20200416/1884c3f29d8becc53851b6e47d537d08.jpg",
+			  	"url":"/demo",
+			  	"addtime":"2020-04-15",
+			  	"status":"1"
+			  }]
+			});
+		  	
 		});
 		</script>
 	</body>

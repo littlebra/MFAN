@@ -11,14 +11,14 @@
 		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css" />
 	</head>
 
-	<style>.layui-form-pane .layui-form-label{height: 30px!important;line-height: 15px!important;color: #666;}.layui-table-view .layui-table-tool .layui-input{height: 30px!important;}.layui-form-item{width :82% !important;margin-bottom: 0 !important;}.layui-form-item .layui-inline{margin-right: 0 !important;margin-bottom: 0 !important;}.layui-form-label {width: 52px !important;padding:8px !important;}.layui-form-item .layui-input-inline {width :120px !important;}.layui-btn+.layui-btn {margin-left: 6px !important;}.layui-table-cell {padding :0 8px!important;}.laytable-cell-1-0-0{ width: 48px; }.laytable-cell-1-0-1{ width: 80px; }.laytable-cell-1-0-2{ width: 80px; }.laytable-cell-1-0-3{ width: 80px; }.laytable-cell-1-0-4{ width: 80px; }.laytable-cell-1-0-5{ width: 160px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
+	<style>.layui-form-pane .layui-form-label{height: 30px!important;line-height: 15px!important;color: #666;}.layui-table-view .layui-table-tool .layui-input{height: 30px!important;display:inline;/*width: auto;*/}.layui-table-tool-temp{display: inline;padding-right:0;width: 80%;}.layui-table-tool-self{width:20%;}.layui-form-item{width :100% !important;margin-bottom: 0 !important;}.layui-form-item .layui-inline{margin-right: 0 !important;margin-bottom: 0 !important;/*display:inline;*/}.layui-form-label {width: 52px !important;padding:8px !important;}.layui-form-item .layui-input-inline {width :120px !important;display: inline;margin:0;left: 0;float: left;}.layui-btn+.layui-btn {margin-left: 6px !important;}.layui-table-cell {padding :0 8px!important;}.laytable-cell-1-0-0{ width: 48px; }.laytable-cell-1-0-1{ width: 80px; }.laytable-cell-1-0-2{ width: 80px; }.laytable-cell-1-0-3{ width: 80px; }.laytable-cell-1-0-4{ width: 80px; }.laytable-cell-1-0-5{ width: 160px; }.laytable-cell-1-0-6{ width: 80px; }.laytable-cell-1-0-7{ width: 80px; }.laytable-cell-1-0-8{ width: 135px; }.laytable-cell-1-0-9{ width: 80px; }.laytable-cell-1-0-10{ width: 178px; }</style>
 	<body>
 		<div class="wrap-container clearfix">
 				<div class="column-content-detail">
 					<div class="layui-btn-group demoTable">
-					  <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-					  <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-					  <button class="layui-btn" data-type="isAll">验证是否全选</button>
+					  <button class="layui-btn layui-btn-sm" data-type="getCheckData">获取选中行数据</button>
+					  <button class="layui-btn layui-btn-sm" data-type="getCheckLength">获取选中数目</button>
+					  <button class="layui-btn layui-btn-sm" data-type="isAll">验证是否全选</button>
 					</div>
 					<script type="text/html" id="toolbarDemo">
 			            <div style="">
@@ -49,7 +49,7 @@
 			                            </div>
 			                        </div>
 			                        <div class="layui-inline">
-			                            <button type="submit" class="layui-btn layui-btn-xs" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+			                            <button type="submit" class="layui-btn layui-btn-sm" lay-submit  lay-filter="data-search-btn">搜 索</button>
 			                        </div>
 			                    </div>
 			                </form>
@@ -128,7 +128,7 @@
 			    //第一个实例
 			  table.render({
 			    elem: '#messageTable'
-			    ,height: 520
+			    ,height: 550
 			    ,url: '../api/message.json' //数据接口
 			    ,page: true //开启分页
 	            ,toolbar: '#toolbarDemo'

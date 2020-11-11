@@ -1464,9 +1464,9 @@
 }
 .main-layout-side .layui-nav {
   background: #444c63;
-}
-.main-layout-side .layui-nav .iconfont,.layui-icon {
-  /*padding-right: 10px;*/
+}/*,.layui-icon*/
+.main-layout-side .layui-nav .iconfont {
+  padding-right: 10px;
   font-size: 18px;
   color: #8f94a1;
   color: #ccc;

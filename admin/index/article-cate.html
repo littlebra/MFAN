@@ -111,6 +111,20 @@
 		</div>
 		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			layui.use(['jquery'],function() {
+				$ = layui.jquery;
+				$.ajax({
+					type: "GET",
+					url:'../api/article-cate.json',
+					dataType: "json",
+					success: function(e){
+						console.log(e)
+					}
+				})
+			})
+
+		</script>
 	</body>
 
 </html>

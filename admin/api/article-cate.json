@@ -7,29 +7,29 @@
 			"name": "最新通告",
 			"sort": 0,
 			"status": 1,
-			"addtime": "2020年12月5日22点24分",
-			"updatetime": "2020年12月5日22点24分"
+			"addtime": "2020-12-5 22:24",
+			"updatetime": "2020-12-5 22:24"
 		},{
 			"id": 1,
 			"name": "荣誉历史",
-			"sort": 0,
+			"sort": 1,
 			"status": 1,
-			"addtime": "2020年12月5日22点24分",
-			"updatetime": "2020年12月5日22点24分"
+			"addtime": "2020-12-5 22:24",
+			"updatetime": "2020-12-5 22:24"
 		},{
 			"id": 2,
 			"name": "企业介绍",
-			"sort": 0,
+			"sort": 2,
 			"status": 1,
-			"addtime": "2020年12月5日22点24分",
-			"updatetime": "2020年12月5日22点24分"
+			"addtime": "2020-12-5 22:24",
+			"updatetime": "2020-12-5 22:24"
 		},{
 			"id": 3,
 			"name": "企业动态",
-			"sort": 0,
+			"sort": 3,
 			"status": 1,
-			"addtime": "2020年12月5日22点24分",
-			"updatetime": "2020年12月5日22点24分"
+			"addtime": "2020-12-5 22:24",
+			"updatetime": "2020-12-5 22:24"
 		}
 	]
 

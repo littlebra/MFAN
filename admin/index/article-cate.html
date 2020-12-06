@@ -59,25 +59,10 @@
 									<th>操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox" name="" lay-skin="primary" data-id="1"></td>
-									<td class="hidden-xs">1</td>
-									<td class="hidden-xs"><input type="text" name="title" autocomplete="off" class="layui-input" value="0" data-id="1"></td>
-									<td>玩具</td>
-									<td class="hidden-xs">1989-10-14</td>
-									<td class="hidden-xs">1989-10-14</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-xs layui-btn-normal">正常</button></td>
-									<td>
-										<div class="layui-inline">
-											<!-- 分类编辑 -->
-											<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-normal edit-btn" data-id="1" data-url="article-cateadd.html?v=2"><i class="layui-icon">&#xe642;</i></button>
-											<!-- 分类删除 -->
-											<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-danger del-btn" data-id="1" data-url="article-detail.html"><i class="layui-icon">&#xe640;</i></button>
-										</div>
-									</td>
-								</tr>
-								<tr>
+							<!-- 渲染数据 -->
+							<tbody id="cateData">
+								<!-- <tr id="cateData"></tr> -->
+								<!-- <tr>
 									<td><input type="checkbox" name="" lay-skin="primary" data-id="1"></td>
 									<td class="hidden-xs">1</td>
 									<td class="hidden-xs"><input type="text" name="title" autocomplete="off" class="layui-input" value="0" data-id="1"></td>
@@ -91,7 +76,7 @@
 											<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-danger del-btn" data-id="1" data-url="article-detail.html"><i class="layui-icon">&#xe640;</i></button>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 						<div class="page-wrap">
@@ -109,19 +94,56 @@
 					</div>
 				</div>
 		</div>
+		<script id="cateTpl" type="text/html">
+			<!-- 数据循环填充模板 -->
+			 {{#  layui.each(d.data, function(index, item){ }}
+			<tr>
+				<td><input type="checkbox" name="" lay-skin="primary" data-id="{{item.id}}"></td>
+				<td class="hidden-xs">{{item.id}}</td>
+				<td class="hidden-xs"><input type="text" name="title" autocomplete="off" class="layui-input" value="{{item.sort}}" data-id="{{item.sort}}"></td>
+				<td>{{item.name}}</td>
+				<td class="hidden-xs">{{item.addtime}}</td>
+				<td class="hidden-xs">{{item.updatetime}}</td>
+				<td><button class="layui-btn layui-btn-mini layui-btn-xs layui-btn-normal">{{item.status}}</button></td>
+				<td>
+					<div class="layui-inline">
+						<!-- 分类编辑 -->
+						<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-normal edit-btn" data-id="{{item.id}}" data-url="article-cateadd.html"><i class="layui-icon">&#xe642;</i></button>
+						<!-- 分类删除 -->
+						<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-danger del-btn" data-id="{{item.id}}" data-url="article-detail.html"><i class="layui-icon">&#xe640;</i></button>
+					</div>
+				</td>
+			</tr>
+				  {{#  }); }}
+			  {{#  if(d.data.length === 0){ }}
+			    无数据
+			  {{#  } }} 
+		</script>
 		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
 		<script>
-			layui.use(['jquery'],function() {
+			layui.use(['jquery','laytpl'],function() {
+				var laytpl = layui.laytpl;
 				$ = layui.jquery;
 				$.ajax({
 					type: "GET",
 					url:'../api/article-cate.json',
 					dataType: "json",
 					success: function(e){
-						console.log(e)
+						console.log(e.data);
+
+						var getTpl = cateTpl.innerHTML
+						,view = document.getElementById('cateData');
+						console.log('e.data.length',e.data.length);
+
+						laytpl(getTpl).render(e, function(html){
+						  view.innerHTML = html;
+						  console.log('html',html);
+						});
+
 					}
 				})
+
 			})
 
 		</script>

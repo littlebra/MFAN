@@ -108,7 +108,7 @@
 				<td>
 					<div class="layui-inline">
 						<!-- 分类编辑 -->
-						<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-normal edit-btn" data-id="{{item.id}}" data-url="article-cateadd.html"><i class="layui-icon">&#xe642;</i></button>
+						<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-normal edit-btn" data-id="{{item.id}}" data-url="article-cateedit.html"><i class="layui-icon">&#xe642;</i></button>
 						<!-- 分类删除 -->
 						<button class="layui-btn layui-btn-small layui-btn-sm layui-btn-danger del-btn" data-id="{{item.id}}" data-url="article-detail.html"><i class="layui-icon">&#xe640;</i></button>
 					</div>
@@ -138,7 +138,7 @@
 
 						laytpl(getTpl).render(e, function(html){
 						  view.innerHTML = html;
-						  console.log('html',html);
+						  // console.log('html',html);
 						});
 
 					}
